@@ -1,3 +1,5 @@
+import json
+
 # Function to authenticate clients
 def authenticate_client(client_socket, allowed_clients):
     try:
@@ -90,3 +92,19 @@ if __name__ == "__main__":
     except Exception as e:
         logging.error(f"Server encountered an error: {e}")
         exit(1)
+        def load_config():
+            """
+            Load configuration from a JSON file.
+            Returns a dictionary containing the configuration.
+            """
+            config_file = "config.json"
+            try:
+                with open(config_file, 'r') as file:
+                    config = json.load(file)
+                return config
+            except FileNotFoundError:
+                logging.error(f"Configuration file {config_file} not found.")
+                raise
+            except json.JSONDecodeError as e:
+                logging.error(f"Error decoding JSON from {config_file}: {e}")
+                raise
