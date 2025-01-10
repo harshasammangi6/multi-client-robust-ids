@@ -172,4 +172,6 @@ def handle_client(client_socket, client_address, blacklist, allowed_clients):
         logging.error(f"Error with client {client_address}: {e}")
     finally:
         logging.info(f"Closing connection with {client_address}")
+        # Log the disconnection event
+        logging.info(f"Client {client_id} disconnected.")
         client_socket.close()
